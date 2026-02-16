@@ -37,15 +37,8 @@ function Menu() {
     <>
       {<AppBar>
         <Toolbar sx={{ "justifyContent": "space-around", "alignItems": "center" }}>
-          <Typography variant="h1" align="center">TRUEKIT</Typography>
           <Avatar src={logo} sx={{ "width": "5.5%", "height": "5.5%" }}>
           </Avatar>
-          <MDBInputGroup>
-            <MDBInput label='Search' />
-            <MDBBtn rippleColor='dark'>
-              <MDBIcon icon='search' />
-            </MDBBtn>
-          </MDBInputGroup>
         </Toolbar>
       </AppBar>}
       

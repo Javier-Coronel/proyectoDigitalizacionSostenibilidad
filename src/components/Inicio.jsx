@@ -32,42 +32,35 @@ function Inicio() {
     { intercambio: "Botas", usuario: "ads", image: "../assets/images/logo.png", descripcion: "Botas de la talla 38 para mujer", numeroDeCreditosBase: 100 },
     { intercambio: "Botas", usuario: "ads", image: "../assets/images/logo.png", descripcion: "Botas de la talla 38 para mujer", numeroDeCreditosBase: 100 },
     { intercambio: "Botas", usuario: "ads", image: "../assets/images/logo.png", descripcion: "Botas de la talla 38 para mujer", numeroDeCreditosBase: 100 },
+    { intercambio: "Botas", usuario: "ads", image: "../assets/images/logo.png", descripcion: "Botas de la talla 38 para mujer", numeroDeCreditosBase: 100 },
+    { intercambio: "Botas", usuario: "ads", image: "../assets/images/logo.png", descripcion: "Botas de la talla 38 para mujer", numeroDeCreditosBase: 100 },
+    { intercambio: "Botas", usuario: "ads", image: "../assets/images/logo.png", descripcion: "Botas de la talla 38 para mujer", numeroDeCreditosBase: 100 },
+    { intercambio: "Botas", usuario: "ads", image: "../assets/images/logo.png", descripcion: "Botas de la talla 38 para mujer", numeroDeCreditosBase: 100 },
+    { intercambio: "Botas", usuario: "ads", image: "../assets/images/logo.png", descripcion: "Botas de la talla 38 para mujer", numeroDeCreditosBase: 100 },
+    { intercambio: "Botas", usuario: "ads", image: "../assets/images/logo.png", descripcion: "Botas de la talla 38 para mujer", numeroDeCreditosBase: 100 },
+    { intercambio: "Botas", usuario: "ads", image: "../assets/images/logo.png", descripcion: "Botas de la talla 38 para mujer", numeroDeCreditosBase: 100 },
+    { intercambio: "Botas", usuario: "ads", image: "../assets/images/logo.png", descripcion: "Botas de la talla 38 para mujer", numeroDeCreditosBase: 100 },
+    { intercambio: "Botas", usuario: "ads", image: "../assets/images/logo.png", descripcion: "Botas de la talla 38 para mujer", numeroDeCreditosBase: 100 },
     { intercambio: "", usuario: "", image: "../assets/images/logo.png", descripcion: "", numeroDeCreditosBase: 0 }
   ]);
-  function rowDisplay() {
-    let isOfFour = true
-    let count = 0
-    return (
-      <>
-        <Grid container spacing={3} columns={{ xs: 4, sm: 8, md: 12 }}>
-          {
-            rows.map((row) => (
-              <Grid size={(isOfFour ? 20 : 1)} key={row.intercambio}>
-                <CardIntercambio intercambio={row.intercambio} usuario={row.usuario} image={row.image} descripcion={row.descripcion} numeroDeCreditosBase={row.numeroDeCreditosBase} />
-                {
-                  () => {
-                    count++
-                    if ((isOfFour && count == 4) || (!isOfFour && count == 5)) {
-                      isOfFour = !isOfFour
-                      count = 0
-                    }
-                  }
-                }
-              </Grid>
-            ))
-          }
-        </Grid>
-      </>
-    )
+  let isOfFour = true
+  let count = 0
+  function checkFour() {
+    count++
+    console.log(isOfFour)
+    if ((isOfFour && count == 5) || (!isOfFour && count == 4)) {
+      isOfFour = !isOfFour
+      count = 1
+    }
+    return isOfFour ? 3 : 4
   }
   return (
     <>
       <Box
         sx={{
-          
           display: "block",
           justifyContent: "center",
-          alignItems: "start",
+          //alignItems: "anchor-center",
           minHeight: "calc(50vh - 100px)",
         }}
       >
@@ -87,9 +80,20 @@ function Inicio() {
       </Box>
       <Box>
         <Typography>Los ultimos productos:</Typography>
-        {
-          rowDisplay()
-        }
+      </Box>
+      <Box sx={{ flexGrow: 1 }} xs>
+        <Grid container 
+          justifyContent="center"
+          sx={{ minHeight: '100vh' }}
+          columns={12}>
+          {
+            rows.map((row, index) => (
+              <Grid centered xs={12} sm={6} md={checkFour()} key={index} sx={{ padding: "10px",justifySelf: "anchor-center", }}>
+                <CardIntercambio intercambio={row.intercambio} usuario={row.usuario} image={row.image} descripcion={row.descripcion} numeroDeCreditosBase={row.numeroDeCreditosBase} />
+              </Grid>
+            ))
+          }
+        </Grid>
       </Box>
     </>
   );
