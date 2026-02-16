@@ -48,11 +48,11 @@ function Inicio() {
   function checkFour() {
     count++
     console.log(isOfFour)
-    if ((isOfFour && count == 5) || (!isOfFour && count == 4)) {
+    if ((isOfFour && count == 5) || (!isOfFour && count == 6)) {
       isOfFour = !isOfFour
       count = 1
     }
-    return isOfFour ? 3 : 4
+    return isOfFour ? 5 : 4
   }
   return (
     <>
@@ -82,14 +82,16 @@ function Inicio() {
         <Typography>Los ultimos productos:</Typography>
       </Box>
       <Box sx={{ flexGrow: 1 }} xs>
-        <Grid container 
+        <Grid 
+          container
+          alignItems="center"
           justifyContent="center"
           sx={{ minHeight: '100vh' }}
-          columns={12}>
+          columns={20}>
           {
             rows.map((row, index) => (
-              <Grid centered xs={12} sm={6} md={checkFour()} key={index} sx={{ padding: "10px",justifySelf: "anchor-center", }}>
-                <CardIntercambio intercambio={row.intercambio} usuario={row.usuario} image={row.image} descripcion={row.descripcion} numeroDeCreditosBase={row.numeroDeCreditosBase} />
+              <Grid centered xs={12} sm={6} md={checkFour()} key={index} sx={{ padding: "10px", justifySelf: "anchor-center", }}>
+                <CardIntercambio sx={{ justifySelf: "anchor-center", }} intercambio={row.intercambio} usuario={row.usuario} image={row.image} descripcion={row.descripcion} numeroDeCreditosBase={row.numeroDeCreditosBase} />
               </Grid>
             ))
           }
