@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   MDBCollapse,
   MDBContainer,
@@ -11,7 +12,14 @@ import {
   MDBNavbarBrand,
   MDBNavbarNav,
   MDBNavbarToggler,
+  MDBInputGroup,
+  MDBInput,
+  MDBBtn
 } from "mdb-react-ui-kit";
+import AppBar from '@mui/material/AppBar';
+import Avatar from '@mui/material/Avatar';
+import Typography from "@mui/material/Typography";
+import Toolbar from '@mui/material/Toolbar';
 import { useState } from "react";
 import { Link } from "react-router";
 import logo from "../assets/images/logo.png";
@@ -26,37 +34,22 @@ function Menu() {
 
 
   return (
-    <MDBNavbar expand="lg" light bgColor="light" sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "start",
-        }}>
-      <MDBContainer fluid>
-        <MDBNavbarBrand href="#">
-          <img src={logo} height="30" alt="" loading="lazy" />
-          TRUEKIT
-        </MDBNavbarBrand>
-        <MDBNavbarToggler
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-          onClick={() => setOpenBasic(!openBasic)}
-        >
-          <MDBIcon icon="bars" fas />
-        </MDBNavbarToggler>
-
-        <MDBCollapse navbar open={openBasic} className="w-100">
-          {/* Contenedor principal para el menú y los botones */}
-          <MDBNavbarNav className="w-100 d-flex justify-content-between align-items-center">
-            {/* Menú de la izquierda */}
-            <div className="d-flex">
-            </div>
-
-            
-          </MDBNavbarNav>
-        </MDBCollapse>
-      </MDBContainer>
-    </MDBNavbar>
+    <>
+      {<AppBar>
+        <Toolbar sx={{ "justifyContent": "space-around", "alignItems": "center" }}>
+          <Typography variant="h1" align="center">TRUEKIT</Typography>
+          <Avatar src={logo} sx={{ "width": "5.5%", "height": "5.5%" }}>
+          </Avatar>
+          <MDBInputGroup>
+            <MDBInput label='Search' />
+            <MDBBtn rippleColor='dark'>
+              <MDBIcon icon='search' />
+            </MDBBtn>
+          </MDBInputGroup>
+        </Toolbar>
+      </AppBar>}
+      
+    </>
   );
 }
 export default Menu;

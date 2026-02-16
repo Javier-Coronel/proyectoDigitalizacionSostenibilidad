@@ -1,23 +1,25 @@
 import Card from '@mui/material/Card';
+import Button from '@mui/material/Button';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Avatar from '@mui/material/Avatar';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
+import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import ShareIcon from '@mui/icons-material/Share';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import logo from "../assets/images/logo.png";
 
 
-function CardIntercambio({intercambio = "", usuario = "", image = "../assets/images/logo.png", descripcion = "", numeroDeCreditosBase=0}){
+function CardIntercambio({intercambio = "", usuario = "", imageToAdd, descripcion = "", numeroDeCreditosBase=0}){
     
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345,  }} >
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+          <Avatar sx={{ bgcolor: red[500] }} aria-label="user">
             R
           </Avatar>
         }
@@ -26,13 +28,14 @@ function CardIntercambio({intercambio = "", usuario = "", image = "../assets/ima
             <MoreVertIcon />
           </IconButton>
         }
-        title={intercambio + " equivalen a " + numeroDeCreditosBase + " Truecréditos."}
+        title={intercambio + ", equivalen a " + numeroDeCreditosBase + " Truecréditos."}
         subheader={usuario}
       />
       <CardMedia
         component="img"
         height="194"
-        image={image}
+        image={imageToAdd || logo}
+        sx={{opacity: imageToAdd? 1: 0.5}}
         alt={intercambio}
       />
       <CardContent>
@@ -41,7 +44,7 @@ function CardIntercambio({intercambio = "", usuario = "", image = "../assets/ima
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <Button size="small">Intercambiar</Button>
+        <Button size="small" color="info">Intercambiar</Button>
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>

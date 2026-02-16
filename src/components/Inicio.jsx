@@ -10,6 +10,7 @@
 
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
 import CardIntercambio from "./CardIntercambio"
 import { useState } from "react";
 /**
@@ -25,18 +26,49 @@ import { useState } from "react";
  */
 function Inicio() {
   const [rows] = useState([
-    {intercambio: "", usuario: "", image: "../assets/images/logo.png", descripcion: "", numeroDeCreditosBase: 0},
-    {intercambio: "", usuario: "", image: "../assets/images/logo.png", descripcion: "", numeroDeCreditosBase: 0},
-    {intercambio: "", usuario: "", image: "../assets/images/logo.png", descripcion: "", numeroDeCreditosBase: 0}
-]);
+    { intercambio: "Clases de guitarra", usuario: "Antonio Antonin", image: "../assets/images/logo.png", descripcion: "asd", numeroDeCreditosBase: 15 },
+    { intercambio: "Botas", usuario: "ads", image: "../assets/images/logo.png", descripcion: "Botas de la talla 38 para mujer", numeroDeCreditosBase: 100 },
+    { intercambio: "Botas", usuario: "ads", image: "../assets/images/logo.png", descripcion: "Botas de la talla 38 para mujer", numeroDeCreditosBase: 100 },
+    { intercambio: "Botas", usuario: "ads", image: "../assets/images/logo.png", descripcion: "Botas de la talla 38 para mujer", numeroDeCreditosBase: 100 },
+    { intercambio: "Botas", usuario: "ads", image: "../assets/images/logo.png", descripcion: "Botas de la talla 38 para mujer", numeroDeCreditosBase: 100 },
+    { intercambio: "Botas", usuario: "ads", image: "../assets/images/logo.png", descripcion: "Botas de la talla 38 para mujer", numeroDeCreditosBase: 100 },
+    { intercambio: "", usuario: "", image: "../assets/images/logo.png", descripcion: "", numeroDeCreditosBase: 0 }
+  ]);
+  function rowDisplay() {
+    let isOfFour = true
+    let count = 0
+    return (
+      <>
+        <Grid container spacing={3} columns={{ xs: 4, sm: 8, md: 12 }}>
+          {
+            rows.map((row) => (
+              <Grid size={(isOfFour ? 20 : 1)} key={row.intercambio}>
+                <CardIntercambio intercambio={row.intercambio} usuario={row.usuario} image={row.image} descripcion={row.descripcion} numeroDeCreditosBase={row.numeroDeCreditosBase} />
+                {
+                  () => {
+                    count++
+                    if ((isOfFour && count == 4) || (!isOfFour && count == 5)) {
+                      isOfFour = !isOfFour
+                      count = 0
+                    }
+                  }
+                }
+              </Grid>
+            ))
+          }
+        </Grid>
+      </>
+    )
+  }
   return (
     <>
       <Box
         sx={{
+          
           display: "block",
           justifyContent: "center",
           alignItems: "start",
-          minHeight: "calc(100vh - 100px)",
+          minHeight: "calc(50vh - 100px)",
         }}
       >
         {/* Mensaje de bienvenida principal */}
@@ -54,9 +86,10 @@ function Inicio() {
         </Box>
       </Box>
       <Box>
-        {rows.map((row) => (
-            <CardIntercambio intercambio = {row.intercambio} usuario = {row.usuario} image = {row.image} descripcion = {row.descripcion} numeroDeCreditosBase={row.numeroDeCreditosBase}/>
-        ))}
+        <Typography>Los ultimos productos:</Typography>
+        {
+          rowDisplay()
+        }
       </Box>
     </>
   );
