@@ -41,18 +41,17 @@ function Inicio() {
     { intercambio: "Botas", usuario: "ads", image: "../assets/images/logo.png", descripcion: "Botas de la talla 38 para mujer", numeroDeCreditosBase: 100 },
     { intercambio: "Botas", usuario: "ads", image: "../assets/images/logo.png", descripcion: "Botas de la talla 38 para mujer", numeroDeCreditosBase: 100 },
     { intercambio: "Botas", usuario: "ads", image: "../assets/images/logo.png", descripcion: "Botas de la talla 38 para mujer", numeroDeCreditosBase: 100 },
-    { intercambio: "", usuario: "", image: "../assets/images/logo.png", descripcion: "", numeroDeCreditosBase: 0 }
   ]);
   let isOfFour = true
   let count = 0
   function checkFour() {
     count++
     console.log(isOfFour)
-    if ((isOfFour && count == 5) || (!isOfFour && count == 6)) {
+    if ((isOfFour && count == 5) || (!isOfFour && count == 4)) {
       isOfFour = !isOfFour
       count = 1
     }
-    return isOfFour ? 5 : 4
+    return isOfFour ? 3 : 4
   }
   return (
     <>
@@ -87,7 +86,7 @@ function Inicio() {
           alignItems="center"
           justifyContent="center"
           sx={{ minHeight: '100vh' }}
-          columns={20}>
+          columns={12}>
           {
             rows.map((row, index) => (
               <Grid centered xs={12} sm={6} md={checkFour()} key={index} sx={{ padding: "10px", justifySelf: "anchor-center", }}>
@@ -95,6 +94,7 @@ function Inicio() {
               </Grid>
             ))
           }
+            <Grid xs={12}><Box></Box></Grid>
         </Grid>
       </Box>
     </>
